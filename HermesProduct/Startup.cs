@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 
 namespace HermesProduct
 {
+    using HermesProduct.Models;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -29,7 +31,7 @@ namespace HermesProduct
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
             if (env.IsDevelopment())
             {
@@ -42,10 +44,37 @@ namespace HermesProduct
 
             app.UseAuthorization();
 
+            // ע�ᵽconsul
+            app.RegisterConsul(lifetime, LoadConsulService());
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private ConsulService LoadConsulService()
+        {
+            ConsulService consulService = new ConsulService
+            {
+                Address = Configuration["Consul:Address"],
+                DataCenter = Configuration["Consul:DataCenter"]
+            };
+
+            return consulService;
+        }
+
+        private HermesService LoadHermesService()
+        {
+            HermesService hermesService = new HermesService
+            {
+                Name = Configuration["Service:Name"],
+                Address = Configuration["Service:Address"],
+                Port = Convert.ToInt32(Configuration["Service:Port"]),
+                HealthCheck = Configuration["Service:HealthCheck"]
+            };
+
+            return hermesService;
         }
     }
 }

@@ -1,0 +1,14 @@
+﻿version: "3.7"
+services:
+  hermes-product:
+    build:
+      context: .
+    image: hermes-product
+    container_name: hermes-product-1
+    ports:
+      - "5000:5000"
+    networks:
+      hermes-net:
+networks:
+  hermes-net:
+    name: hermes-network

@@ -5,6 +5,17 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HermesProduct", "HermesProduct\HermesProduct.csproj", "{1F767036-3E1B-4A14-91F7-69F1420B7094}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BA6A062-A640-47A2-A944-3DD425A1C33E}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HermesProduct.Core", "HermesProduct.Core\HermesProduct.Core.csproj", "{E0926646-8058-4699-B427-12A7818A91EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HermesProduct.Base", "HermesProduct.Base\HermesProduct.Base.csproj", "{FED752A8-F2F1-414D-A3E6-B1E2A75CD116}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +26,14 @@ Global
 		{1F767036-3E1B-4A14-91F7-69F1420B7094}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F767036-3E1B-4A14-91F7-69F1420B7094}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F767036-3E1B-4A14-91F7-69F1420B7094}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0926646-8058-4699-B427-12A7818A91EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0926646-8058-4699-B427-12A7818A91EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0926646-8058-4699-B427-12A7818A91EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0926646-8058-4699-B427-12A7818A91EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED752A8-F2F1-414D-A3E6-B1E2A75CD116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED752A8-F2F1-414D-A3E6-B1E2A75CD116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED752A8-F2F1-414D-A3E6-B1E2A75CD116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED752A8-F2F1-414D-A3E6-B1E2A75CD116}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
