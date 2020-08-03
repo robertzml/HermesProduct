@@ -14,6 +14,10 @@ using Microsoft.Extensions.Logging;
 namespace HermesProduct
 {
     using HermesProduct.Models;
+    using Microsoft.AspNetCore.Http;
+    using System.Net;
+    using System.Net.NetworkInformation;
+    using System.Net.Sockets;
 
     public class Startup
     {
@@ -44,8 +48,10 @@ namespace HermesProduct
 
             app.UseAuthorization();
 
+            //GetLocalIP();
+
             // 注册到consul
-            app.RegisterConsul(lifetime, LoadConsulService());
+            app.RegisterConsul(lifetime, LoadConsulService(), LoadHermesService());
 
             app.UseEndpoints(endpoints =>
             {
@@ -53,6 +59,10 @@ namespace HermesProduct
             });
         }
 
+        /// <summary>
+        /// 载入consul 客户端配置
+        /// </summary>
+        /// <returns></returns>
         private ConsulService LoadConsulService()
         {
             ConsulService consulService = new ConsulService
@@ -64,6 +74,10 @@ namespace HermesProduct
             return consulService;
         }
 
+        /// <summary>
+        /// 载入本服务相关配置
+        /// </summary>
+        /// <returns></returns>
         private HermesService LoadHermesService()
         {
             HermesService hermesService = new HermesService
@@ -75,6 +89,20 @@ namespace HermesProduct
             };
 
             return hermesService;
+        }
+
+        private string GetLocalIP()
+        {
+            var networks = NetworkInterface.GetAllNetworkInterfaces()
+                .Select(p => p.GetIPProperties())
+                .SelectMany(p => p.UnicastAddresses);
+
+            string localIP = NetworkInterface.GetAllNetworkInterfaces()
+                .Select(p => p.GetIPProperties())
+                .SelectMany(p => p.UnicastAddresses)
+                .FirstOrDefault(p => p.Address.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback(p.Address))?.Address.ToString();
+
+            return localIP;
         }
     }
 }

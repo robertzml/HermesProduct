@@ -18,7 +18,7 @@ namespace HermesProduct
         /// <param name="app"></param>
         /// <param name="lifetime"></param>
         /// <returns></returns>
-        public static IApplicationBuilder RegisterConsul(this IApplicationBuilder app, IHostApplicationLifetime lifetime, ConsulService consulService)
+        public static IApplicationBuilder RegisterConsul(this IApplicationBuilder app, IHostApplicationLifetime lifetime, ConsulService consulService, HermesService hermesService)
         {
             var consulClient = new ConsulClient(x =>
                 {
@@ -30,17 +30,17 @@ namespace HermesProduct
             var httpCheck = new AgentServiceCheck
             {
                 DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(5),
-                HTTP = "http://172.24.0.22:5000/api/Health/check",
+                HTTP = hermesService.HealthCheck,
                 Interval = TimeSpan.FromSeconds(10),
                 Timeout = TimeSpan.FromSeconds(5)
             };
 
             var registration = new AgentServiceRegistration
             {
-                Address = "192.168.1.175",
-                Port = 50791,
-                ID = Guid.NewGuid().ToString(),
-                Name = "TestDiscovery",
+                Address = hermesService.Address,
+                Port = hermesService.Port,
+                ID = hermesService.Name + "-" + hermesService.Address,
+                Name = hermesService.Name,
                 Check = httpCheck
             };
 
