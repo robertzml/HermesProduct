@@ -8,5 +8,10 @@
     <PackageReference Include="Consul" Version="1.6.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HermesProduct.Base\HermesProduct.Base.csproj" />
+    <ProjectReference Include="..\HermesProduct.Core\HermesProduct.Core.csproj" />
+  </ItemGroup>
+
 
 </Project>

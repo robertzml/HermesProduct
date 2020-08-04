@@ -12,8 +12,4 @@
     <ProjectReference Include="..\HermesProduct.Base\HermesProduct.Base.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="BL\" />
-  </ItemGroup>
-
 </Project>

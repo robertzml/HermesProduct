@@ -13,11 +13,9 @@ using Microsoft.Extensions.Logging;
 
 namespace HermesProduct
 {
+    using HermesProduct.Base.System;
     using HermesProduct.Models;
-    using Microsoft.AspNetCore.Http;
-    using System.Net;
-    using System.Net.NetworkInformation;
-    using System.Net.Sockets;
+  
 
     public class Startup
     {
@@ -46,9 +44,7 @@ namespace HermesProduct
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
-            //GetLocalIP();
+            app.UseAuthorization();         
 
             // ×¢²áµ½consul
             app.RegisterConsul(lifetime, LoadConsulService(), LoadHermesService());
@@ -57,6 +53,10 @@ namespace HermesProduct
             {
                 endpoints.MapControllers();
             });
+
+            // ÅäÖÃÁ¬½Ó×Ö·û´®
+            string cs = Configuration["ConnectionString:Base"];
+            Cache.Instance.Add("ConnectionString", cs);
         }
 
         /// <summary>
@@ -91,18 +91,18 @@ namespace HermesProduct
             return hermesService;
         }
 
-        private string GetLocalIP()
-        {
-            var networks = NetworkInterface.GetAllNetworkInterfaces()
-                .Select(p => p.GetIPProperties())
-                .SelectMany(p => p.UnicastAddresses);
+        //private string GetLocalIP()
+        //{
+        //    var networks = NetworkInterface.GetAllNetworkInterfaces()
+        //        .Select(p => p.GetIPProperties())
+        //        .SelectMany(p => p.UnicastAddresses);
 
-            string localIP = NetworkInterface.GetAllNetworkInterfaces()
-                .Select(p => p.GetIPProperties())
-                .SelectMany(p => p.UnicastAddresses)
-                .FirstOrDefault(p => p.Address.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback(p.Address))?.Address.ToString();
+        //    string localIP = NetworkInterface.GetAllNetworkInterfaces()
+        //        .Select(p => p.GetIPProperties())
+        //        .SelectMany(p => p.UnicastAddresses)
+        //        .FirstOrDefault(p => p.Address.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback(p.Address))?.Address.ToString();
 
-            return localIP;
-        }
+        //    return localIP;
+        //}
     }
 }

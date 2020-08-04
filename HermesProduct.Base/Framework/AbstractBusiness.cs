@@ -7,6 +7,7 @@ using System.Text;
 namespace HermesProduct.Base.Framework
 {
     using SqlSugar;
+    using HermesProduct.Base.System;
 
     /// <summary>
     /// 抽象业务类
@@ -19,7 +20,7 @@ namespace HermesProduct.Base.Framework
         #region Function
         protected SqlSugarClient GetInstance()
         {
-            var cs = ""; // Cache.Instance.Get("ConnectionString").ToString();
+            var cs = Cache.Instance.Get("ConnectionString").ToString();
 
             SqlSugarClient db = new SqlSugarClient(new ConnectionConfig()
             {
