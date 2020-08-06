@@ -26,6 +26,18 @@ namespace HermesProduct.Core.BL
 
             return db.Queryable<Category>().OrderBy(r => r.Number).ToList();            
         }
+
+        /// <summary>
+        /// 添加产品类别
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public override (bool success, string errorMessage, Category t) Create(Category entity, SqlSugarClient db = null)
+        {
+            entity.Id = Guid.NewGuid().ToString();
+            return base.Create(entity, db);
+        }
         #endregion //Query
     }
 }

@@ -18,7 +18,7 @@ namespace HermesProduct.Core.Entity
         /// <summary>
         /// ID
         /// </summary>
-        [SugarColumn(ColumnName = "id", IsPrimaryKey = true, IsIdentity = true)]
+        [SugarColumn(ColumnName = "id", IsPrimaryKey = true)]
         [Display(Name = "ID")]
         public string Id { get; set; }
 

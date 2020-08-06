@@ -15,7 +15,8 @@ namespace HermesProduct
 {
     using HermesProduct.Base.System;
     using HermesProduct.Models;
-  
+    using HermesProduct.Services;
+    using HermesProduct.Providers;  
 
     public class Startup
     {
@@ -30,6 +31,8 @@ namespace HermesProduct
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddTransient(typeof(ICategoryService), typeof(CategoryService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
