@@ -36,10 +36,10 @@ namespace HermesProduct.Providers
         /// </summary>
         /// <param name="entity">产品类别</param>
         /// <returns></returns>
-        public (ErrorCode errorCode, string errorMessage, Category t) Create(Category entity)
+        public async Task<(ErrorCode errorCode, string errorMessage, Category t)> Create(Category entity)
         {
             CategoryBusiness categoryBusiness = new CategoryBusiness();
-            return categoryBusiness.Create(entity);
+            return await categoryBusiness.Create(entity);
         }
         #endregion //Method
     }

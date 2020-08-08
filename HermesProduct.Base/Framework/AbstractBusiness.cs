@@ -104,15 +104,16 @@ namespace HermesProduct.Base.Framework
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        public virtual (ErrorCode errorCode, string errorMessage, T t) Create(T entity, SqlSugarClient db = null)
+        public virtual async Task<(ErrorCode errorCode, string errorMessage, T t)> Create(T entity, SqlSugarClient db = null)
         {
             try
             {
                 if (db == null)
                     db = GetInstance();
 
-                var t = db.Insertable(entity).ExecuteReturnEntity();
-                return (ErrorCode.Success, "", t);
+                var t = await db.Insertable(entity).ExecuteReturnEntityAsync();
+
+                return (ErrorCode.Success, ErrorCode.Success.DisplayName(), t);
             }
             catch (Exception e)
             {
@@ -125,16 +126,17 @@ namespace HermesProduct.Base.Framework
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        public virtual (ErrorCode errorCode, string errorMessage) Update(T entity, SqlSugarClient db = null)
+        public virtual async Task<(ErrorCode errorCode, string errorMessage)> Update(T entity, SqlSugarClient db = null)
         {
             try
             {
                 if (db == null)
                     db = GetInstance();
 
-                var result = db.Updateable(entity).ExecuteCommand();
+                var result = await db.Updateable(entity).ExecuteCommandAsync();
+
                 if (result == 1)
-                    return (ErrorCode.Success, "");
+                    return (ErrorCode.Success, ErrorCode.Success.DisplayName());
                 else
                     return (ErrorCode.ObjectNotFound, "未更新对象");
             }
@@ -149,16 +151,17 @@ namespace HermesProduct.Base.Framework
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns></returns>
-        public virtual (ErrorCode errorCode, string errorMessage) Delete(Tkey id, SqlSugarClient db = null)
+        public virtual async Task<(ErrorCode errorCode, string errorMessage)> Delete(Tkey id, SqlSugarClient db = null)
         {
             try
             {
                 if (db == null)
                     db = GetInstance();
 
-                var result = db.Deleteable<T>().In(id).ExecuteCommand();
+                var result = await db.Deleteable<T>().In(id).ExecuteCommandAsync();
+
                 if (result == 1)
-                    return (ErrorCode.Success, "");
+                    return (ErrorCode.Success, ErrorCode.Success.DisplayName());
                 else
                     return (ErrorCode.ObjectNotFound, "未删除对象");
             }

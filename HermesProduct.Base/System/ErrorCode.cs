@@ -13,7 +13,7 @@ namespace HermesProduct.Base.System
         /// <summary>
         /// 成功
         /// </summary>
-        [Display(Name = "成功")]
+        [Display(Name = "success")]
         Success = 0,
 
         /// <summary>
@@ -74,6 +74,18 @@ namespace HermesProduct.Base.System
         /// 认证超时
         /// </summary>
         [Display(Name = "认证超时")]
-        AuthorizationExpire = 10
+        AuthorizationExpire = 10,
+
+        /// <summary>
+        /// 名称重复
+        /// </summary>
+        [Display(Name = "名称重复")]
+        DuplicateName = 11,
+
+        /// <summary>
+        /// 代码重复
+        /// </summary>
+        [Display(Name = "代码重复")]
+        DuplicateNumber = 12
     }
 }

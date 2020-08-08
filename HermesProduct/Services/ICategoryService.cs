@@ -24,6 +24,6 @@ namespace HermesProduct.Services
         /// </summary>
         /// <param name="entity">产品类别</param>
         /// <returns></returns>
-        (ErrorCode errorCode, string errorMessage, Category t) Create(Category entity);
+        Task<(ErrorCode errorCode, string errorMessage, Category t)> Create(Category entity);
     }
 }

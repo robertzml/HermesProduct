@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HermesProduct.Controllers
 {
+    using HermesProduct.Base.System;
     using HermesProduct.Core.Entity;
     using HermesProduct.Services;
     using HermesProduct.Models;
@@ -37,19 +38,19 @@ namespace HermesProduct.Controllers
         /// <returns></returns>
         public async Task<ActionResult<ResponseData<List<Category>>>> FindAll()
         {
-            var task = Task.Run(() =>
-            {
-                var data = this.categoryService.FindAll();
+            var data = await this.categoryService.FindAll();
 
-                return RestHelper<List<Category>>.MakeResponse(data.Result, 0, "success");
-            });
-
-            return await task;            
+            return RestHelper<List<Category>>.MakeResponse(data, ErrorCode.Success);
         }
 
-        public ActionResult<ResponseData<Category>> Create(Category category)
+        /// <summary>
+        /// 添加产品类别
+        /// </summary>
+        /// <param name="category">产品类别</param>
+        /// <returns></returns>
+        public async Task<ActionResult<ResponseData<Category>>> Create(Category category)
         {
-            var result = this.categoryService.Create(category);
+            var result = await this.categoryService.Create(category);
 
             return RestHelper<Category>.MakeResponse(result.t, (int)result.errorCode, result.errorMessage);
         }

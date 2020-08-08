@@ -35,10 +35,22 @@ namespace HermesProduct.Core.BL
         /// <param name="entity"></param>
         /// <param name="db"></param>
         /// <returns></returns>
-        public override (ErrorCode errorCode, string errorMessage, Category t) Create(Category entity, SqlSugarClient db = null)
+        public override async Task<(ErrorCode errorCode, string errorMessage, Category t)> Create(Category entity, SqlSugarClient db = null)
         {
-            entity.Id = Guid.NewGuid().ToString();
-            return base.Create(entity, db);
+            if (db == null)
+                db = GetInstance();
+
+            var exist = await db.Queryable<Category>().CountAsync(r => r.Number == entity.Number);
+
+            if (exist > 0)
+            {
+                return (ErrorCode.DuplicateNumber, ErrorCode.DuplicateNumber.DisplayName(), null);
+            }
+            else
+            {
+                entity.Id = Guid.NewGuid().ToString();
+                return await base.Create(entity, db);
+            }
         }
         #endregion //Query
     }

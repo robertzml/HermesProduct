@@ -57,20 +57,20 @@ namespace HermesProduct.Base.Framework
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        (ErrorCode errorCode, string errorMessage, T t) Create(T entity, SqlSugarClient db = null);
-
+        Task<(ErrorCode errorCode, string errorMessage, T t)> Create(T entity, SqlSugarClient db = null);
+            
         /// <summary>
         /// 编辑对象
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        (ErrorCode errorCode, string errorMessage) Update(T entity, SqlSugarClient db = null);
+        Task<(ErrorCode errorCode, string errorMessage)> Update(T entity, SqlSugarClient db = null);
 
         /// <summary>
         /// 根据ID删除对象
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns></returns>
-        (ErrorCode errorCode, string errorMessage) Delete(Tkey id, SqlSugarClient db = null);
+        Task<(ErrorCode errorCode, string errorMessage)> Delete(Tkey id, SqlSugarClient db = null);
     }
 }
