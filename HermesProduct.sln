@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HermesProduct", "HermesProduct\HermesProduct.csproj", "{1F767036-3E1B-4A14-91F7-69F1420B7094}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HermesProduct", "HermesProduct\HermesProduct.csproj", "{1F767036-3E1B-4A14-91F7-69F1420B7094}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BA6A062-A640-47A2-A944-3DD425A1C33E}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,9 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HermesProduct.Core", "HermesProduct.Core\HermesProduct.Core.csproj", "{E0926646-8058-4699-B427-12A7818A91EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HermesProduct.Core", "HermesProduct.Core\HermesProduct.Core.csproj", "{E0926646-8058-4699-B427-12A7818A91EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HermesProduct.Base", "HermesProduct.Base\HermesProduct.Base.csproj", "{FED752A8-F2F1-414D-A3E6-B1E2A75CD116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HermesProduct.Base", "HermesProduct.Base\HermesProduct.Base.csproj", "{FED752A8-F2F1-414D-A3E6-B1E2A75CD116}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HermesProduct.Test", "HermesProduct.Test\HermesProduct.Test.csproj", "{69950ACE-AB3D-49A8-801C-BC3B40BE5D30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,10 @@ Global
 		{FED752A8-F2F1-414D-A3E6-B1E2A75CD116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FED752A8-F2F1-414D-A3E6-B1E2A75CD116}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FED752A8-F2F1-414D-A3E6-B1E2A75CD116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69950ACE-AB3D-49A8-801C-BC3B40BE5D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69950ACE-AB3D-49A8-801C-BC3B40BE5D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69950ACE-AB3D-49A8-801C-BC3B40BE5D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69950ACE-AB3D-49A8-801C-BC3B40BE5D30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

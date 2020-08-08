@@ -8,21 +8,31 @@ namespace HermesProduct.Models
     /// <summary>
     /// 返回数据
     /// </summary>
-    public class ResponseData
+    public class ResponseData<T>
     {
         /// <summary>
-        /// 状态
+        /// 错误码
         /// </summary>
-        public int Status { get; set; }
+        public int ErrorCode { get; set; }
 
         /// <summary>
-        /// 错误消息
+        /// 消息
         /// </summary>
-        public string ErrorMessage { get; set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// 对象
         /// </summary>
-        public object Entity { get; set; }
+        public T Result { get; set; }
+
+        /// <summary>
+        /// 响应时间
+        /// </summary>
+        public string Time { get; set; }
+
+        /// <summary>
+        /// 服务端IP
+        /// </summary>
+        public string IpAddress { get; set; }
     }
 }

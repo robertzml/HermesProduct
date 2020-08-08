@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HermesProduct.Core.Entity;
-using HermesProduct.Services;
-using HermesProduct.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HermesProduct.Controllers
 {
+    using HermesProduct.Core.Entity;
+    using HermesProduct.Services;
+    using HermesProduct.Models;
+    using HermesProduct.Utility;
+
     /// <summary>
     /// 产品类别控制器
     /// </summary>
@@ -33,23 +35,23 @@ namespace HermesProduct.Controllers
         /// 获取所有产品类别
         /// </summary>
         /// <returns></returns>
-        public async Task<ActionResult<List<Category>>> FindAll()
+        public async Task<ActionResult<ResponseData<List<Category>>>> FindAll()
         {
-            return await this.categoryService.FindAll();
+            var task = Task.Run(() =>
+            {
+                var data = this.categoryService.FindAll();
+
+                return RestHelper<List<Category>>.MakeResponse(data.Result, 0, "success");
+            });
+
+            return await task;            
         }
 
-        public ActionResult<ResponseData> Create(Category category)
+        public ActionResult<ResponseData<Category>> Create(Category category)
         {
             var result = this.categoryService.Create(category);
 
-            ResponseData rd = new ResponseData
-            {
-                ErrorMessage = result.errorMessage,
-                Status = (int)result.errorCode,
-                Entity = result.t
-            };
-
-            return rd;
+            return RestHelper<Category>.MakeResponse(result.t, (int)result.errorCode, result.errorMessage);
         }
         #endregion //Action
     }

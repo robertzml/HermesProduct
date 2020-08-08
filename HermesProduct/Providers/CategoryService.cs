@@ -10,17 +10,20 @@ namespace HermesProduct.Providers
     using HermesProduct.Core.Entity;
     using HermesProduct.Services;
 
+    /// <summary>
+    /// 产品类别业务类
+    /// </summary>
     public class CategoryService : ICategoryService
     {
         #region Field
-       
-        #endregion //Field
 
-        #region Constructor
-
-        #endregion //Constructor
+        #endregion //Field        
 
         #region Method
+        /// <summary>
+        /// 获取所有产品类别
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Category>> FindAll()
         {
             CategoryBusiness categoryBusiness = new CategoryBusiness();
@@ -28,6 +31,11 @@ namespace HermesProduct.Providers
             return await categoryBusiness.FindAll();
         }
 
+        /// <summary>
+        /// 添加产品类别
+        /// </summary>
+        /// <param name="entity">产品类别</param>
+        /// <returns></returns>
         public (ErrorCode errorCode, string errorMessage, Category t) Create(Category entity)
         {
             CategoryBusiness categoryBusiness = new CategoryBusiness();
