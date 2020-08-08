@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace HermesProduct.Providers
 {
     using HermesProduct.Base.System;
-    using HermesProduct.Core.BL;
+    using HermesProduct.Core.DL;
     using HermesProduct.Core.Entity;
     using HermesProduct.Services;
 
@@ -24,11 +24,10 @@ namespace HermesProduct.Providers
         /// 获取所有产品类别
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Category>> FindAll()
+        public Task<List<Category>> FindAll()
         {
-            CategoryBusiness categoryBusiness = new CategoryBusiness();
-
-            return await categoryBusiness.FindAll();
+            CategoryRepository categoryRepository = new CategoryRepository();
+            return categoryRepository.FindAll();
         }
 
         /// <summary>
@@ -36,10 +35,21 @@ namespace HermesProduct.Providers
         /// </summary>
         /// <param name="entity">产品类别</param>
         /// <returns></returns>
-        public async Task<(ErrorCode errorCode, string errorMessage, Category t)> Create(Category entity)
+        public Task<(ErrorCode errorCode, string errorMessage, Category t)> Create(Category entity)
         {
-            CategoryBusiness categoryBusiness = new CategoryBusiness();
-            return await categoryBusiness.Create(entity);
+            CategoryRepository categoryRepository = new CategoryRepository();
+            return categoryRepository.Create(entity);
+        }
+
+        /// <summary>
+        /// 编辑产品类别
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Task<(ErrorCode errorCode, string errorMessage)> Update(Category entity)
+        {
+            CategoryRepository categoryRepository = new CategoryRepository();
+            return categoryRepository.Update(entity);
         }
         #endregion //Method
     }

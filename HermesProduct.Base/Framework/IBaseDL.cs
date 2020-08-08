@@ -11,11 +11,11 @@ namespace HermesProduct.Base.Framework
     using HermesProduct.Base.System;
 
     /// <summary>
-    /// 基础业务接口
+    /// 基础数据操作接口
     /// </summary>
     /// <typeparam name="T">实体类型</typeparam>
     /// <typeparam name="Tkey">主键类型</typeparam>
-    public interface IBaseBL<T, Tkey> where T : IBaseEntity<Tkey>
+    public interface IBaseDL<T, Tkey> where T : IBaseEntity<Tkey>
     {
         /// <summary>
         /// 根据ID查找对象

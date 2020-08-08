@@ -10,11 +10,11 @@ namespace HermesProduct.Base.Framework
     using HermesProduct.Base.System;
 
     /// <summary>
-    /// 抽象业务类
+    /// 抽象数据操作类
     /// </summary>
     /// <typeparam name="T">实体类型</typeparam>
     /// <typeparam name="Tkey">主键类型</typeparam>
-    public abstract class AbstractBusiness<T, Tkey> : IBaseBL<T, Tkey>
+    public abstract class AbstractRepository<T, Tkey> : IBaseDL<T, Tkey>
         where T : class, IBaseEntity<Tkey>, new()
     {
         #region Function
