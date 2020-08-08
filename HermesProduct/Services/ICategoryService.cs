@@ -12,7 +12,7 @@ namespace HermesProduct.Services
     /// </summary>
     public interface ICategoryService
     {
-        List<Category> FindAll();
+        Task<List<Category>> FindAll();
 
         (bool success, string errorMessage, Category t) Create(Category entity);
     }

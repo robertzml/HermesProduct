@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HermesProduct.Core.BL
 {
@@ -19,12 +20,12 @@ namespace HermesProduct.Core.BL
         /// </summary>
         /// <param name="db"></param>
         /// <returns></returns>
-        public override List<Category> FindAll(SqlSugarClient db = null)
+        public override async Task<List<Category>> FindAll(SqlSugarClient db = null)
         {
             if (db == null)
                 db = GetInstance();
 
-            return db.Queryable<Category>().OrderBy(r => r.Number).ToList();            
+            return await db.Queryable<Category>().OrderBy(r => r.Number).ToListAsync();            
         }
 
         /// <summary>

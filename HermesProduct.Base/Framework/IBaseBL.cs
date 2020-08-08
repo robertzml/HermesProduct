@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HermesProduct.Base.Framework
 {
@@ -20,13 +21,13 @@ namespace HermesProduct.Base.Framework
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns></returns>
-        T FindById(Tkey id, SqlSugarClient db = null);
+        Task<T> FindById(Tkey id, SqlSugarClient db = null);
 
         /// <summary>
         /// 查找所有对象
         /// </summary>
         /// <returns></returns>
-        List<T> FindAll(SqlSugarClient db = null);
+        Task<List<T>> FindAll(SqlSugarClient db = null);
 
         /// <summary>
         /// 按条件查找对象
@@ -34,7 +35,7 @@ namespace HermesProduct.Base.Framework
         /// <param name="expression">查询条件</param>
         /// <param name="db"></param>
         /// <returns></returns>
-        T Single(Expression<Func<T, bool>> expression, SqlSugarClient db = null);
+        Task<T> Single(Expression<Func<T, bool>> expression, SqlSugarClient db = null);
 
         /// <summary>
         /// 按条件查找对象
@@ -42,13 +43,13 @@ namespace HermesProduct.Base.Framework
         /// <param name="expression">查询条件</param>
         /// <param name="db"></param>
         /// <returns></returns>
-        List<T> Query(Expression<Func<T, bool>> expression, SqlSugarClient db = null);
+        Task<List<T>> Query(Expression<Func<T, bool>> expression, SqlSugarClient db = null);
 
         /// <summary>
         /// 查找所有记录数量
         /// </summary>
         /// <returns></returns>
-        long Count(SqlSugarClient db = null);
+        Task<long> Count(SqlSugarClient db = null);
 
         /// <summary>
         /// 创建对象

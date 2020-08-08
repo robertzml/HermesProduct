@@ -33,9 +33,9 @@ namespace HermesProduct.Controllers
         /// 获取所有产品类别
         /// </summary>
         /// <returns></returns>
-        public ActionResult<List<Category>> FindAll()
+        public async Task<ActionResult<List<Category>>> FindAll()
         {
-            return this.categoryService.FindAll();
+            return await this.categoryService.FindAll();
         }
 
         public ActionResult<ResponseData> Create(Category category)

@@ -20,11 +20,11 @@ namespace HermesProduct.Providers
         #endregion //Constructor
 
         #region Method
-        public List<Category> FindAll()
+        public async Task<List<Category>> FindAll()
         {
             CategoryBusiness categoryBusiness = new CategoryBusiness();
 
-            return categoryBusiness.FindAll();
+            return await categoryBusiness.FindAll();
         }
 
         public (bool success, string errorMessage, Category t) Create(Category entity)

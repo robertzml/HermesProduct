@@ -1,8 +1,8 @@
-﻿using SqlSugar;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HermesProduct.Base.Framework
 {
@@ -39,24 +39,24 @@ namespace HermesProduct.Base.Framework
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns></returns>
-        public T FindById(Tkey id, SqlSugarClient db = null)
+        public virtual async Task<T> FindById(Tkey id, SqlSugarClient db = null)
         {
             if (db == null)
                 db = GetInstance();
 
-            return db.Queryable<T>().InSingle(id);
+            return await db.Queryable<T>().InSingleAsync(id);
         }
 
         /// <summary>
         /// 查找所有对象
         /// </summary>
         /// <returns></returns>
-        public virtual List<T> FindAll(SqlSugarClient db = null)
+        public virtual async Task<List<T>> FindAll(SqlSugarClient db = null)
         {
             if (db == null)
                 db = GetInstance();
 
-            return db.Queryable<T>().ToList();
+            return await db.Queryable<T>().ToListAsync();
         }
 
         /// <summary>
@@ -65,12 +65,12 @@ namespace HermesProduct.Base.Framework
         /// <param name="expression">查询条件</param>
         /// <param name="db"></param>
         /// <returns></returns>
-        public virtual T Single(Expression<Func<T, bool>> expression, SqlSugarClient db = null)
+        public virtual async Task<T> Single(Expression<Func<T, bool>> expression, SqlSugarClient db = null)
         {
             if (db == null)
                 db = GetInstance();
 
-            return db.Queryable<T>().Single(expression);
+            return await db.Queryable<T>().SingleAsync(expression);
         }
 
         /// <summary>
@@ -79,23 +79,24 @@ namespace HermesProduct.Base.Framework
         /// <param name="expression">查询条件</param>
         /// <param name="db"></param>
         /// <returns></returns>
-        public virtual List<T> Query(Expression<Func<T, bool>> expression, SqlSugarClient db = null)
+        public virtual async Task<List<T>> Query(Expression<Func<T, bool>> expression, SqlSugarClient db = null)
         {
             if (db == null)
                 db = GetInstance();
 
-            return db.Queryable<T>().Where(expression).ToList();
+            return await db.Queryable<T>().Where(expression).ToListAsync();
         }
 
         /// <summary>
         /// 查找所有记录数量
         /// </summary>
         /// <returns></returns>
-        public virtual long Count(SqlSugarClient db = null)
+        public virtual async Task<long> Count(SqlSugarClient db = null)
         {
             if (db == null)
                 db = GetInstance();
-            return db.Queryable<T>().Count();
+
+            return await db.Queryable<T>().CountAsync();
         }
 
         /// <summary>
