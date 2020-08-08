@@ -12,7 +12,7 @@ namespace HermesProduct.Services
     /// <summary>
     /// 产品类别接口
     /// </summary>
-    public interface ICategoryService : IBaseSL<Category, string>
+    public interface ICategoryService : IBaseBL<Category, string>
     {
         /// <summary>
         /// 添加产品类别

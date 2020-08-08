@@ -15,7 +15,7 @@ namespace HermesProduct.Base.Framework
     /// </summary>
     /// <typeparam name="T">实体类型</typeparam>
     /// <typeparam name="Tkey">主键类型</typeparam>
-    public interface IBaseDL<T, Tkey> where T : IBaseEntity<Tkey>
+    public interface IBaseDAL<T, Tkey> where T : IBaseEntity<Tkey>
     {
         /// <summary>
         /// 根据ID查找对象

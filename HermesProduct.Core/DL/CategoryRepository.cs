@@ -13,7 +13,7 @@ namespace HermesProduct.Core.DL
     /// <summary>
     /// 产品类别数据类
     /// </summary>
-    public class CategoryRepository : AbstractRepository<Category, string>, IBaseDL<Category, string>
+    public class CategoryRepository : AbstractRepository<Category, string>, IBaseDAL<Category, string>
     {
         #region Query
         /// <summary>

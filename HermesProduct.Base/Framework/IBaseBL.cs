@@ -8,11 +8,11 @@ namespace HermesProduct.Base.Framework
     using HermesProduct.Base.System;
 
     /// <summary>
-    /// 基础服务接口
+    /// 基础业务接口
     /// </summary>
     /// <typeparam name="T">实体类型</typeparam>
     /// <typeparam name="Tkey">主键类型</typeparam>
-    public interface IBaseSL<T, Tkey> where T : IBaseEntity<Tkey>
+    public interface IBaseBL<T, Tkey> where T : IBaseEntity<Tkey>
     {
         /// <summary>
         /// 查找所有对象
