@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace HermesProduct.Base.Framework
 {
     using SqlSugar;
+    using HermesProduct.Base.System;
 
     /// <summary>
     /// 基础业务接口
@@ -56,20 +57,20 @@ namespace HermesProduct.Base.Framework
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        (bool success, string errorMessage, T t) Create(T entity, SqlSugarClient db = null);
+        (ErrorCode errorCode, string errorMessage, T t) Create(T entity, SqlSugarClient db = null);
 
         /// <summary>
         /// 编辑对象
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        (bool success, string errorMessage) Update(T entity, SqlSugarClient db = null);
+        (ErrorCode errorCode, string errorMessage) Update(T entity, SqlSugarClient db = null);
 
         /// <summary>
         /// 根据ID删除对象
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns></returns>
-        (bool success, string errorMessage) Delete(Tkey id, SqlSugarClient db = null);
+        (ErrorCode errorCode, string errorMessage) Delete(Tkey id, SqlSugarClient db = null);
     }
 }

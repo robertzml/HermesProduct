@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace HermesProduct.Providers
 {
+    using HermesProduct.Base.System;
     using HermesProduct.Core.BL;
     using HermesProduct.Core.Entity;
     using HermesProduct.Services;
@@ -27,7 +28,7 @@ namespace HermesProduct.Providers
             return await categoryBusiness.FindAll();
         }
 
-        public (bool success, string errorMessage, Category t) Create(Category entity)
+        public (ErrorCode errorCode, string errorMessage, Category t) Create(Category entity)
         {
             CategoryBusiness categoryBusiness = new CategoryBusiness();
             return categoryBusiness.Create(entity);

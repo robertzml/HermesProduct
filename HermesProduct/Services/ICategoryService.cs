@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace HermesProduct.Services
 {
+    using HermesProduct.Base.System;
     using HermesProduct.Core.Entity;
 
     /// <summary>
@@ -14,6 +15,6 @@ namespace HermesProduct.Services
     {
         Task<List<Category>> FindAll();
 
-        (bool success, string errorMessage, Category t) Create(Category entity);
+        (ErrorCode errorCode, string errorMessage, Category t) Create(Category entity);
     }
 }

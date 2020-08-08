@@ -104,7 +104,7 @@ namespace HermesProduct.Base.Framework
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        public virtual (bool success, string errorMessage, T t) Create(T entity, SqlSugarClient db = null)
+        public virtual (ErrorCode errorCode, string errorMessage, T t) Create(T entity, SqlSugarClient db = null)
         {
             try
             {
@@ -112,11 +112,11 @@ namespace HermesProduct.Base.Framework
                     db = GetInstance();
 
                 var t = db.Insertable(entity).ExecuteReturnEntity();
-                return (true, "", t);
+                return (ErrorCode.Success, "", t);
             }
             catch (Exception e)
             {
-                return (false, e.Message, null);
+                return (ErrorCode.Exception, e.Message, null);
             }
         }
 
@@ -125,7 +125,7 @@ namespace HermesProduct.Base.Framework
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        public virtual (bool success, string errorMessage) Update(T entity, SqlSugarClient db = null)
+        public virtual (ErrorCode errorCode, string errorMessage) Update(T entity, SqlSugarClient db = null)
         {
             try
             {
@@ -134,13 +134,13 @@ namespace HermesProduct.Base.Framework
 
                 var result = db.Updateable(entity).ExecuteCommand();
                 if (result == 1)
-                    return (true, "");
+                    return (ErrorCode.Success, "");
                 else
-                    return (false, "未更新对象");
+                    return (ErrorCode.ObjectNotFound, "未更新对象");
             }
             catch (Exception e)
             {
-                return (false, e.Message);
+                return (ErrorCode.Exception, e.Message);
             }
         }
 
@@ -149,7 +149,7 @@ namespace HermesProduct.Base.Framework
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns></returns>
-        public virtual (bool success, string errorMessage) Delete(Tkey id, SqlSugarClient db = null)
+        public virtual (ErrorCode errorCode, string errorMessage) Delete(Tkey id, SqlSugarClient db = null)
         {
             try
             {
@@ -158,13 +158,13 @@ namespace HermesProduct.Base.Framework
 
                 var result = db.Deleteable<T>().In(id).ExecuteCommand();
                 if (result == 1)
-                    return (true, "");
+                    return (ErrorCode.Success, "");
                 else
-                    return (false, "未删除对象");
+                    return (ErrorCode.ObjectNotFound, "未删除对象");
             }
             catch (Exception e)
             {
-                return (false, e.Message);
+                return (ErrorCode.Exception, e.Message);
             }
         }
         #endregion //Method

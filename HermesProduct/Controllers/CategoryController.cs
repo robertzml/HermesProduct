@@ -45,7 +45,7 @@ namespace HermesProduct.Controllers
             ResponseData rd = new ResponseData
             {
                 ErrorMessage = result.errorMessage,
-                Status = result.success ? 0 : 1,
+                Status = (int)result.errorCode,
                 Entity = result.t
             };
 

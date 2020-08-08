@@ -7,6 +7,7 @@ namespace HermesProduct.Core.BL
 {
     using SqlSugar;
     using HermesProduct.Base.Framework;
+    using HermesProduct.Base.System;
     using HermesProduct.Core.Entity;
 
     /// <summary>
@@ -34,7 +35,7 @@ namespace HermesProduct.Core.BL
         /// <param name="entity"></param>
         /// <param name="db"></param>
         /// <returns></returns>
-        public override (bool success, string errorMessage, Category t) Create(Category entity, SqlSugarClient db = null)
+        public override (ErrorCode errorCode, string errorMessage, Category t) Create(Category entity, SqlSugarClient db = null)
         {
             entity.Id = Guid.NewGuid().ToString();
             return base.Create(entity, db);
