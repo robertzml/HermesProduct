@@ -15,8 +15,8 @@ namespace HermesProduct
 {
     using HermesProduct.Base.System;
     using HermesProduct.Models;
-    using HermesProduct.Services;
-    using HermesProduct.Providers;  
+    using HermesProduct.Core.Facade;
+    using HermesProduct.Core.BL;
 
     public class Startup
     {
@@ -31,8 +31,8 @@ namespace HermesProduct
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddTransient(typeof(ICategoryService), typeof(CategoryService));
+           
+            services.AddTransient(typeof(ICategoryBusiness), typeof(CategoryBusiness));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,19 +93,5 @@ namespace HermesProduct
 
             return hermesService;
         }
-
-        //private string GetLocalIP()
-        //{
-        //    var networks = NetworkInterface.GetAllNetworkInterfaces()
-        //        .Select(p => p.GetIPProperties())
-        //        .SelectMany(p => p.UnicastAddresses);
-
-        //    string localIP = NetworkInterface.GetAllNetworkInterfaces()
-        //        .Select(p => p.GetIPProperties())
-        //        .SelectMany(p => p.UnicastAddresses)
-        //        .FirstOrDefault(p => p.Address.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback(p.Address))?.Address.ToString();
-
-        //    return localIP;
-        //}
     }
 }
