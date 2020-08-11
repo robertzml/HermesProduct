@@ -18,6 +18,8 @@ namespace HermesProduct
         /// </summary>
         /// <param name="app"></param>
         /// <param name="lifetime"></param>
+        /// <param name="consulService"></param>
+        /// <param name="hermesService"></param>
         /// <returns></returns>
         public static IApplicationBuilder RegisterConsul(this IApplicationBuilder app, IHostApplicationLifetime lifetime, ConsulService consulService, HermesService hermesService)
         {

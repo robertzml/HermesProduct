@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +19,7 @@ namespace HermesProduct
     using HermesProduct.Models;
     using HermesProduct.Core.Facade;
     using HermesProduct.Core.BL;
+    using Microsoft.OpenApi.Models;  
 
     public class Startup
     {
@@ -31,7 +34,22 @@ namespace HermesProduct
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-           
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Hermes Product API",
+                    Description = "²úÆ·Ä£¿é ASP.NET Core Web API"
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
             services.AddTransient(typeof(ICategoryBusiness), typeof(CategoryBusiness));
         }
 
@@ -44,6 +62,13 @@ namespace HermesProduct
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hermes Product API V1");
+            });
 
             app.UseRouting();
 

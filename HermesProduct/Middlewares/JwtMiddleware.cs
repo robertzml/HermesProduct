@@ -65,7 +65,7 @@ namespace HermesProduct.Middlewares
 
             if (context.Request.Headers["Authorization"].Count == 0)
             {
-                await context.Response.WriteAsync(authFailed("需要Authorization头"));
+                await context.Response.WriteAsync(authFailed("need Authorization header"));
                 return;
             }
             await _next(context);
