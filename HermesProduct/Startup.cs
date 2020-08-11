@@ -52,6 +52,8 @@ namespace HermesProduct
             // ע�ᵽconsul
             app.RegisterConsul(lifetime, LoadConsulService(), LoadHermesService());
 
+            app.UseJwtAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

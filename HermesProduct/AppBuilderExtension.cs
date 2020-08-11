@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 
 namespace HermesProduct
 {
+    using Consul;
+    using HermesProduct.Middlewares;
     using HermesProduct.Models;
 
     public static class AppBuilderExtension
@@ -52,6 +53,16 @@ namespace HermesProduct
             });
 
             return app;
+        }
+
+        /// <summary>
+        /// 采用Jwt认证
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseJwtAuthorization(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<JwtMiddleware>();
         }
     }
 }
