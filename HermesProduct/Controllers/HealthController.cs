@@ -11,10 +11,16 @@ namespace HermesProduct.Controllers
     [ApiController]
     public class HealthController : ControllerBase
     {
+        #region Action
+        /// <summary>
+        /// 服务状态检查
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("check")]
         public IActionResult Get()
         {
             return Content("ok");
         }
+        #endregion //Action
     }
 }

@@ -48,6 +48,10 @@ namespace HermesProduct
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+
+                var coreXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.Core.xml";
+                var coreXmlPath = Path.Combine(AppContext.BaseDirectory, coreXmlFile);
+                c.IncludeXmlComments(coreXmlPath);
             });
 
             services.AddTransient(typeof(ICategoryBusiness), typeof(CategoryBusiness));
@@ -70,9 +74,15 @@ namespace HermesProduct
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hermes Product API V1");
             });
 
+            app.UseReDoc(c =>
+            {
+                c.SpecUrl("/swagger/v1/swagger.json");
+                c.DocumentTitle = "Hermes Product API V1";
+            });
+
             app.UseRouting();
 
-            app.UseAuthorization();         
+            app.UseAuthorization();
 
             // ע�ᵽconsul
             app.RegisterConsul(lifetime, LoadConsulService(), LoadHermesService());
